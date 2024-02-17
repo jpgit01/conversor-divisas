@@ -64,7 +64,7 @@ async function MostrarUltimosDias(ele) {
     const ctx = document.getElementById("myChart");
     Chart.defaults.font.size = 20;
     let backgroundColors = [
-      'white','white','white','blue','blue','blue','red','red','red','red'
+        'white','white','white','white','blue','blue','blue','red','red','red','red'
     ];
   
     if (valor === "euro") {
@@ -79,7 +79,7 @@ async function MostrarUltimosDias(ele) {
         labels: fechaGraf.slice(0, 10),
         datasets: [
           {
-            label: `--- ${valor} ---`,
+            label: `---Valor del ${valor} a peso Chileno---`,
             data: datoGraf.slice(0, 10),
             backgroundColor: backgroundColors,
             borderWidth: 5,
