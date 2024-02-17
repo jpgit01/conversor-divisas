@@ -60,49 +60,38 @@ async function MostrarUltimosDias(ele) {
   }
 
 
-async function graficoChart(valor) {
-  const ctx = document.getElementById("myChart");
-  Chart.defaults.font.size = 20;
-myChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: [
-        fechaGraf[0],
-        fechaGraf[1],
-        fechaGraf[2],
-        fechaGraf[3],
-        fechaGraf[4],
-        fechaGraf[5],
-        fechaGraf[6],
-        fechaGraf[7],
-        fechaGraf[8],
-        fechaGraf[9]
-      ],
-      datasets: [
-        {
-          label: `--- ${valor} ---`,
-          data: [
-            datoGraf[0],
-            datoGraf[1],
-            datoGraf[2],
-            datoGraf[3],
-            datoGraf[4],
-            datoGraf[5],
-            datoGraf[6],
-            datoGraf[7],
-            datoGraf[8],
-            datoGraf[9]
-          ],
-          borderWidth: 5,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: false,
+  async function graficoChart(valor) {
+    const ctx = document.getElementById("myChart");
+    Chart.defaults.font.size = 20;
+    let backgroundColors = [
+      'white','white','white','blue','blue','blue','red','red','red','red'
+    ];
+  
+    if (valor === "euro") {
+      backgroundColors = [
+        'blue','blue','blue','yellow','yellow','yellow','yellow','blue','blue','blue'
+      ];
+    }
+  
+    myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: fechaGraf.slice(0, 10),
+        datasets: [
+          {
+            label: `--- ${valor} ---`,
+            data: datoGraf.slice(0, 10),
+            backgroundColor: backgroundColors,
+            borderWidth: 5,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: false,
+          },
         },
       },
-    },
-  });
-}
+    });
+  }
