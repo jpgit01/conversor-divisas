@@ -22,13 +22,12 @@ btnBuscar.addEventListener("click", insertarResult);
 async function insertarResult() {
   try {
     let tipoCambio = dolarOeuro.value;
-    console.log(tipoCambio)
     await MostrarUltimosDias(tipoCambio);
     mostrarResult.innerHTML = await divisaFetch(tipoCambio);
     if (myChart) {
         myChart.destroy();
     }
-    await graficoChart()
+    await graficoChart(tipoCambio)
   } catch (e) {
     mostrarResult.innerHTML = `Error Resultado: ${e.message}`;
   }
@@ -53,7 +52,7 @@ async function MostrarUltimosDias(ele) {
         datoGraf.push(datoGrafico);
       }
   
-      await graficoChart();
+      await graficoChart(ele);
   
     } catch (e) {
       mostrarGraf.innerHTML = `Error Gráfico: ${e.message}`;
@@ -61,8 +60,9 @@ async function MostrarUltimosDias(ele) {
   }
 
 
-async function graficoChart() {
+async function graficoChart(valor) {
   const ctx = document.getElementById("myChart");
+  Chart.defaults.font.size = 20;
 myChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -80,7 +80,7 @@ myChart = new Chart(ctx, {
       ],
       datasets: [
         {
-          label: "Valor",
+          label: `--- ${valor} ---`,
           data: [
             datoGraf[0],
             datoGraf[1],
