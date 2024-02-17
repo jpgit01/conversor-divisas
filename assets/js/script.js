@@ -23,7 +23,7 @@ async function insertarResult() {
   try {
     let tipoCambio = dolarOeuro.value;
     await MostrarUltimosDias(tipoCambio);
-    mostrarResult.innerHTML = await divisaFetch(tipoCambio);
+    mostrarResult.innerHTML = await divisaFetch(tipoCambio) + ' ' +  tipoCambio;
     if (myChart) {
         myChart.destroy();
     }
